@@ -1,0 +1,46 @@
+version: "3.1"
+stories:
+- story: tư vấn mua thú cưng
+  steps:
+    - intent: ask_pet
+    - action: utter_pet_info
+
+- story: hỏi giá tiền
+  steps:
+    - intent: ask_price
+    - action: utter_price_info
+
+- story: phụ kiện và thức ăn
+  steps:
+    - intent: ask_accessories
+    - action: utter_accessories
+
+- story: dịch vụ spa
+  steps:
+    - intent: ask_spa
+    - action: utter_spa
+
+- story: tiêm phòng thú cưng
+  steps:
+    - intent: ask_vaccine
+    - action: utter_vaccine
+
+- story: vận chuyển thú cưng
+  steps:
+    - intent: ask_transport
+    - action: utter_transport
+
+- story: khám sức khỏe
+  steps:
+    - intent: ask_health
+    - action: utter_health
+
+- story: thức ăn thú cưng
+  steps:
+    - intent: ask_food
+    - action: utter_food
+
+- story: huấn luyện thú cưng
+  steps:
+    - intent: ask_training
+    - action: utter_training

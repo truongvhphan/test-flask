@@ -1,0 +1,44 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - ask_pet
+  - ask_price
+  - ask_accessories
+  - ask_spa
+  - ask_vaccine
+  - ask_transport
+  - ask_health
+  - ask_food
+  - ask_training
+
+responses:
+  utter_greet:
+    - text: "Xin chào! Tôi có thể giúp gì cho bạn về thú cưng hôm nay?"
+  utter_goodbye:
+    - text: "Tạm biệt! Hẹn gặp lại bạn và thú cưng sau nhé!"
+  utter_pet_info:
+    - text: "Chúng tôi có nhiều giống chó mèo dễ thương. Bạn muốn tìm hiểu về giống nào?"
+  utter_price_info:
+    - text: "Giá thú cưng phụ thuộc vào giống và độ tuổi. Bạn muốn tìm hiểu cụ thể về giống nào?"
+  utter_accessories:
+    - text: "Chúng tôi cung cấp đầy đủ phụ kiện và thức ăn như dây dắt, khay vệ sinh, hạt dinh dưỡng, v.v."
+  utter_spa:
+    - text: "Dịch vụ spa gồm tắm rửa, chăm sóc lông và vệ sinh toàn diện cho thú cưng."
+  utter_vaccine:
+    - text: "Chúng tôi cung cấp các gói tiêm phòng an toàn, đầy đủ theo từng độ tuổi thú cưng."
+  utter_transport:
+    - text: "Dịch vụ vận chuyển thú cưng nội/ngoại thành an toàn, có lồng riêng và điều hòa."
+  utter_health:
+    - text: "Dịch vụ khám sức khỏe định kỳ: đo nhiệt độ, kiểm tra da, mắt, xét nghiệm cơ bản."
+  utter_food:
+    - text: "Thức ăn dinh dưỡng riêng cho chó, mèo, hamster,... Bạn muốn tìm cho loại nào?"
+  utter_training:
+    - text: "Chúng tôi có khóa huấn luyện cơ bản: đi vệ sinh đúng chỗ, nghe lệnh đơn giản."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

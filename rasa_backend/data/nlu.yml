@@ -1,0 +1,69 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - chào bạn
+    - hello
+    - xin chào
+    - hi
+
+- intent: goodbye
+  examples: |
+    - tạm biệt
+    - hẹn gặp lại
+    - chào nhé
+    - bye
+
+- intent: ask_pet
+  examples: |
+    - tôi muốn mua chó
+    - có giống mèo nào đẹp không?
+    - tư vấn giúp mình chọn thú cưng
+
+- intent: ask_price
+  examples: |
+    - giá một con chó là bao nhiêu?
+    - mua mèo hết bao nhiêu tiền?
+    - giá thú cưng như thế nào?
+
+- intent: ask_accessories
+  examples: |
+    - có bán phụ kiện cho thú cưng không?
+    - có hạt cho mèo không?
+    - tôi muốn mua thức ăn và đồ chơi cho chó
+
+- intent: ask_spa
+  examples: |
+    - thú cưng có spa không?
+    - chỗ bạn có tắm cho chó mèo không?
+    - muốn đăng ký dịch vụ chăm sóc lông
+
+- intent: ask_vaccine
+  examples: |
+    - có tiêm phòng không?
+    - thú cưng cần tiêm vaccine gì?
+    - muốn đăng ký lịch tiêm cho mèo
+
+- intent: ask_transport
+  examples: |
+    - có nhận vận chuyển chó không?
+    - ship thú cưng ra tỉnh được không?
+    - vận chuyển thú cưng an toàn chứ?
+
+- intent: ask_health
+  examples: |
+    - có khám sức khỏe định kỳ không?
+    - muốn kiểm tra sức khỏe cho mèo
+    - thú cưng cần xét nghiệm gì?
+
+- intent: ask_food
+  examples: |
+    - có bán thức ăn cho chó không?
+    - hamster ăn gì?
+    - tư vấn dinh dưỡng cho mèo
+
+- intent: ask_training
+  examples: |
+    - có huấn luyện chó không?
+    - mèo có thể học đi vệ sinh đúng chỗ không?
+    - dạy thú cưng nghe lệnh đơn giản
