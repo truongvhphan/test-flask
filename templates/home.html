@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Shop</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap&subset=vietnamese" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+</head>
+<body>
+    <nav>
+        <header>
+        <div class="logo-container">
+            <a href="{{ url_for('home') }}" class="logo">
+            <img src="/static/images/home/logo.png" alt="logocucpet">
+            </a>
+            <img src="/static/images/home/logo-text.png" alt="CUC PET Text" class="logo-text-img">
+        </div>
+        <ul class="nav-menu">
+            <li><a href="{{ url_for('home') }}">Trang chủ</a></li>
+            <li><a href="{{ url_for('shopping') }}">Mua sắm</a></li>
+            <li><a href="{{ url_for('service') }}">Dịch vụ</a></li>
+            <li><a href="{{ url_for('contact') }}">Liên hệ</a></li>
+            <li><a href="{{ url_for('chatbot') }}">Chatbot</a></li>
+        </ul>
+        <div class="nav-icon">
+            <input type="text" id="searchHomeInput" placeholder="Tìm kiếm...">
+            <a href="#" id="searchHomeBtn" class="search-icon"><i class='bx bx-search-alt-2'></i></a>
+            <a href="#"><i class='bx bx-user-circle'></i></a>
+            <a href="#"><i class='bx bx-cart-alt'></i></a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+    </nav>
+    <main class="container" role="main">
+    <button class="nav-arrow" aria-label="Trang trước" id="prevBtn">
+        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <polyline points="15 18 9 12 15 6" />
+        </svg>
+    </button>
+
+    <section class="text-content" id="promoText">
+        <h1 id="titleText">RƯỚC BOSS<br>NGOAN NGOÃN<br>SIÊU ĐÁNG YÊU</h1>
+        <h2 id="subtitleText">Khám phá tất cả các bé thú cưng siêu đáng yêu</h2>
+        <p id="discountText">Giảm ngay 25% toàn bộ đơn hàng</p>
+        <button class="btn-shop" id="shopBtn">MUA NGAY</button>
+        <div class="dots" id="dotsContainer"></div>
+    </section>
+
+    <section class="circle-bg" aria-label="Hình ảnh thú cưng">
+        <img src="/static/images/home/dog.png" alt="Chó" class="dog-image" id="dogImage" />
+    </section>
+
+    <button class="nav-arrow" aria-label="Trang tiếp theo" id="nextBtn">
+        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <polyline points="9 18 15 12 9 6" />
+        </svg>
+    </button>
+    </main>
+
+    <section class="highlight-section">
+    <div class="highlight-grid">
+        <div class="feature">
+        <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3C10 5 8 8 8 11c0 3 2 5 4 5s4-2 4-5c0-3-2-6-4-8z" stroke="currentColor" stroke-width="2" />
+            <path d="M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <h3 class="feature-title">Dịch vụ Spa cho thú cưng</h3>
+        <p class="feature-desc">Massage và chăm sóc chuyên nghiệp cho thú cưng của bạn.</p>
+        </div>
+
+        <div class="feature">
+        <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M18 2l4 4-7 7-4-4 7-7zM3 21v-3l9-9 3 3-9 9H3z" stroke="currentColor" stroke-width="2" />
+        </svg>
+        <h3 class="feature-title">Tiêm phòng định kỳ</h3>
+        <p class="feature-desc">Đảm bảo sức khỏe lâu dài với các gói tiêm phòng toàn diện.</p>
+        </div>
+
+        <div class="feature">
+        <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2a10 10 0 100 20 10 10 0 000-20z" stroke="currentColor" stroke-width="2" />
+            <path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <h3 class="feature-title">Chăm sóc sức khoẻ</h3>
+        <p class="feature-desc">Khám và điều trị kịp thời bởi đội ngũ bác sĩ thú y giàu kinh nghiệm.</p>
+        </div>
+
+        <div class="feature">
+        <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M4 4h16v2H4zM4 8h12v2H4zM4 12h16v2H4zM4 16h12v2H4zM4 20h16v2H4z" stroke="currentColor" stroke-width="2" />
+        </svg>
+        <h3 class="feature-title">Huấn luyện cơ bản</h3>
+        <p class="feature-desc">Dạy thú cưng các kỹ năng cơ bản: ngồi, nằm, đi vệ sinh đúng chỗ.</p>
+        </div>
+    </div>
+    </section>
+
+    <div class="sale-container">
+        <div class="frame">
+        <img src="/static/images/home/sale1.png" alt="Sale 1" />
+        </div>
+        <div class="frame">
+        <img src="/static/images/home/sale2.png" alt="Sale 2" />
+        </div>
+        <div class="frame">
+        <img src="/static/images/home/sale3.png" alt="Sale 3" />
+        </div>
+    </div>
+    <div class="big-banner">
+        <img src="/static/images/home/big.png" alt="Big Sale Banner">
+    </div>
+    <section class="product-home">
+        <h1>SẢN PHẨM MỚI</h1>
+        <div class="product-grid">
+            <article class="product-card">
+                <div class="labels">
+                    <span class="label label-new">New</span>
+                    <span class="label label-sale">Sale</span>
+                </div>
+                <div class="product-image">
+                    <img src="/static/images/home/poodlenho.png" alt="Cho Poodle Mini Home" loading="lazy" onerror="this.style.display='none'" />
+                </div>
+                <p class="product-title">Chó Poodle Nhỏ</p>
+                <p class="price">5.000.000đ</p>
+            </article>
+
+            <article class="product-card">
+                <div class="labels">
+                    <span class="label label-new">New</span>
+                </div>
+                <div class="product-image">
+                    <img src="/static/images/home/chophocsoc.png" alt="Cho Phoc Soc Home" loading="lazy" onerror="this.style.display='none'" />
+                </div>
+                <p class="product-title">Chó Phốc Sóc</p>
+                <p class="price">6.000.000đ</p>
+            </article>
+
+            <article class="product-card">
+            <div class="labels">
+                <span class="label label-new">New</span>
+            </div>
+            <div class="product-image">
+                <img src="/static/images/home/meotaicup.png" alt="Meo Tai Cup Home" loading="lazy" onerror="this.style.display='none'" />
+            </div>
+            <p class="product-title">Mèo Tai Cụp</p>
+            <p class="price">8.500.000đ</p>
+            </article>
+
+            <article class="product-card">
+            <div class="labels">
+                <span class="label label-new">New</span>
+                <span class="label label-sale">Sale</span>
+            </div>
+            <div class="product-image">
+                <img src="/static/images/home/meochanngan.png" alt="Meo Chan Ngan Home" loading="lazy" onerror="this.style.display='none'" />
+            </div>
+            <p class="product-title">Mèo Chân Ngắn</p>
+            <p class="price">10.500.000đ - 13.500.000đ</p>
+            </article>
+
+            <article class="product-card">
+            <div class="labels">
+                <span class="label label-new">New</span>
+                <span class="label label-sale">Sale</span>
+            </div>
+            <div class="product-image">
+                <img src="/static/images/home/hat.png" alt="Hat Home" loading="lazy" onerror="this.style.display='none'" />
+            </div>
+            <p class="product-title">Hạt Royal Caninn cho chó</p>
+            <p class="price">400.000đ - 430.000đ</p>
+            </article>
+
+            <article class="product-card">
+            <div class="labels">
+                <span class="label label-new">New</span>
+                <span class="label label-sale">Sale</span>
+            </div>
+            <div class="product-image">
+                <img src="/static/images/home/xuonggam.png" alt="Xuong Gam Home" loading="lazy" onerror="this.style.display='none'" />
+            </div>
+            <p class="product-title">Xương gặm dinh dưỡng</p>
+            <p class="price">50.000đ</p>
+            </article>
+
+            <article class="product-card">
+            <div class="labels">
+                <span class="label label-new">New</span>
+            </div>
+            <div class="product-image">
+                <img src="/static/images/home/pate.png" alt="Pate Whiskas Home" loading="lazy" onerror="this.style.display='none'" />
+            </div>
+            <p class="product-title">Pate Whiskas cho mèo</p>
+            <p class="price">40.000đ</p>
+            </article>
+
+            <article class="product-card">
+            <div class="labels">
+                <span class="label label-new">New</span>
+            </div>
+            <div class="product-image">
+                <img src="/static/images/home/cakho.png" alt="Snack Ca Kho Home" loading="lazy" onerror="this.style.display='none'" />
+            </div>
+            <p class="product-title">Snack cá khô cho mèo</p>
+            <p class="price">55.000đ</p>
+            </article>
+
+            <article class="product-card">
+            <div class="labels">
+                <span class="label label-new">New</span>
+            </div>
+            <div class="product-image">
+                <img src="/static/images/home/danhrang.png" alt="Ban Chai Cho Thu Cung Home" loading="lazy" onerror="this.style.display='none'" />
+            </div>
+            <p class="product-title">Bàn chải đánh răng cho chó mèo</p>
+            <p class="price">65.000đ</p>
+            </article>
+
+            <article class="product-card">
+            <div class="labels">
+                <span class="label label-new">New</span>
+            </div>
+            <div class="product-image">
+                <img src="/static/images/home/khanlauchan.png" alt="Khan Lau Chan" loading="lazy" onerror="this.style.display='none'" />
+            </div>
+            <p class="product-title">Khăn lau chân thú cưng</p>
+            <p class="price">55.000đ</p>
+            </article>
+
+        </div>
+
+       <button class="btn-all-products" onclick="location.href='/shopping'">TẤT CẢ SẢN PHẨM</button>
+
+    </section>
+    <div class="wrapper">
+        <div class="section-title">
+            <h1>Tin Tức Mới Nhất</h1>
+            <p>Cập nhật các xu hướng chăm sóc thú cưng, sản phẩm mới và thông tin hữu ích cho Boss yêu của bạn.</p>
+        </div>
+
+        <div class="article-grid">
+            <div class="article-box">
+                <div class="image-container-new">
+                    <img src="/static/images/home/food-puppy.png" alt="Bài viết 1">
+                </div>
+                <div class="article-body">
+                    <time>22 Tháng 7, 2025</time>
+                    <h2>Cách Chọn Thức Ăn Phù Hợp Cho Cún</h2>
+                    <p>Chế độ ăn đúng giúp cún phát triển khỏe mạnh và có bộ lông mượt mà.</p>
+                    <div class="reading-time"
+                        onclick="openModal(this)"
+                        data-title="Cách Chọn Thức Ăn Phù Hợp Cho Cún"
+                        data-content="Chế độ dinh dưỡng đóng vai trò cực kỳ quan trọng đối với sức khỏe và sự phát triển toàn diện của cún cưng. 
+
+                    Việc lựa chọn thức ăn cần dựa trên độ tuổi, giống loài, mức độ vận động và tình trạng sức khỏe hiện tại của bé. Cún con dưới 1 tuổi nên được ăn loại thức ăn chuyên biệt giàu đạm, canxi và DHA để phát triển xương và não bộ. Ngược lại, cún trưởng thành cần chế độ ăn cân bằng giữa protein, chất xơ và vitamin.
+
+                    Không nên cho cún ăn thức ăn của người vì chứa nhiều gia vị, muối và dầu mỡ. Nên ưu tiên các thương hiệu thức ăn khô, ướt có nguồn gốc rõ ràng, được chứng nhận bởi chuyên gia thú y. 
+
+                    Ngoài ra, hãy đảm bảo cung cấp đủ nước sạch mỗi ngày và theo dõi phản ứng của cún với thức ăn mới. Nếu thấy biểu hiện như nôn mửa, tiêu chảy, cần ngừng ngay và hỏi ý kiến bác sĩ thú y.">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 6v6l4 2" stroke-width="2"/></svg>
+                        Đọc 3 phút
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-box">
+                <div class="image-container-new">
+                    <img src="/static/images/home/take-care.png" alt="Bài viết 2">
+                </div>
+                <div class="article-body">
+                    <time>21 Tháng 7, 2025</time>
+                    <h2>5 Mẹo Giữ Mèo Luôn Thơm Tho</h2>
+                    <p>Không cần tắm nhiều nhưng vẫn thơm ngát? Xem ngay các mẹo cực hiệu quả!</p>
+                    <div class="reading-time"
+                        onclick="openModal(this)"
+                        data-title="Cách Giữ Mèo Luôn Thơm Tho"
+                        data-content="Mèo là loài vật rất sạch sẽ, thường tự liếm lông để làm sạch cơ thể. Tuy nhiên, nếu không được chăm sóc đúng cách, mèo vẫn có thể có mùi cơ thể do môi trường sống hoặc các vấn đề về sức khỏe.
+
+                    Để giữ mèo luôn thơm tho, bạn nên chải lông cho mèo thường xuyên nhằm loại bỏ lông rụng, bụi bẩn và hạn chế rối lông. Đối với mèo lông dài, việc chải lông nên thực hiện mỗi ngày.
+
+                    Ngoài ra, hãy vệ sinh tai cho mèo mỗi tuần để loại bỏ chất bẩn và ngăn ngừa viêm tai. Cát vệ sinh cũng cần được thay định kỳ từ 1–2 ngày/lần để tránh mùi khó chịu lan ra khắp nhà.
+
+                    Bạn có thể sử dụng xịt khử mùi chuyên dụng dành cho mèo, có thành phần tự nhiên và không chứa hóa chất gây kích ứng. Nếu mèo vẫn có mùi dù đã được chăm sóc kỹ, hãy đưa bé đến bác sĩ thú y để kiểm tra sức khỏe.">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 6v6l4 2" stroke-width="2"/></svg>
+                        Đọc 4 phút
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-box">
+                <div class="image-container-new">
+                    <img src="/static/images/home/spa.jpeg" alt="Bài viết 3">
+                </div>
+                <div class="article-body">
+                    <time>20 Tháng 7, 2025</time>
+                    <h2>Spa Cho Boss – Có Thật Sự Cần Thiết?</h2>
+                    <p>Thú cưng cũng cần thư giãn và chăm sóc chuyên nghiệp? Tìm hiểu lý do!</p>
+                    <div class="reading-time"
+                        onclick="openModal(this)"
+                        data-title="Spa Cho Boss – Có Thật Sự Cần Thiết?"
+                        data-content="Dịch vụ spa thú cưng không còn xa lạ với các sen hiện đại. Nhưng liệu spa cho boss có thật sự cần thiết hay chỉ là sự xa xỉ?
+
+                    Trên thực tế, spa không chỉ là làm đẹp mà còn mang lại nhiều lợi ích cho sức khỏe thú cưng. Các gói spa thường bao gồm tắm gội bằng dầu gội chuyên dụng, làm sạch tai, cắt móng, chải lông, massage và kiểm tra da. Những dịch vụ này giúp thú cưng thư giãn, giảm stress và phát hiện sớm các bệnh lý về da, ve rận, nấm,...
+
+                    Đối với những boss sống trong nhà, ít vận động hoặc thường xuyên ra ngoài chơi, spa định kỳ mỗi 2–4 tuần là một lựa chọn nên cân nhắc. Tuy nhiên, cần chọn spa uy tín, có nhân viên giàu kinh nghiệm và cơ sở vật chất đảm bảo vệ sinh.
+
+                    Tóm lại, spa cho boss là một cách chăm sóc yêu thương và phòng bệnh hiệu quả – không chỉ làm đẹp mà còn giúp nâng cao chất lượng cuộc sống cho thú cưng.">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 6v6l4 2" stroke-width="2"/></svg>
+                        Đọc 2 phút
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="articleModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalContent"></p>
+        </div>
+    </div>
+    <footer class="footer-section" role="contentinfo" aria-label="Footer">
+        <div class="footer-container">
+            <section aria-labelledby="contact-us">
+                <h3 id="contact-us">Liên hệ với chúng tôi</h3>
+                <p>Nhập email để nhận thông báo và ưu đãi từ Cuc Pet.</p>
+                <form class="subscribe-form" aria-label="Form đăng ký nhận tin">
+                    <input
+                    class="email-input"
+                    type="email"
+                    placeholder="Địa chỉ Email"
+                    aria-label="Email"
+                    required
+                    />
+                    <button class="subscribe-button" type="submit">Đăng ký</button>
+                </form>
+                <div class="social-icons" aria-label="Mạng xã hội">
+                <a href="#" aria-label="Facebook" title="Facebook">
+                    <svg viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91V132.1c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S293.55 0 262.36 0c-73.07 0-121.11 44.38-121.11 124.72v70.62H89.09V288h52.16v224h100.2V288z"/></svg>
+                </a>
+                <a href="#" aria-label="TikTok" title="TikTok">
+                    <svg viewBox="0 0 448 512"><path d="M448 209.3v125.7c-35.3 0-69.3-10.4-98-28.5v135.2c0 90.5-73.5 164-164 164S22 462.2 22 371.7s73.5-164 164-164c14.1 0 27.9 1.8 41.1 5.1v92.3c-13.2-4.3-27.3-6.6-41.1-6.6-50.1 0-90.7 40.6-90.7 90.7s40.6 90.7 90.7 90.7 90.7-40.6 90.7-90.7V64h60.2c0 35.3 28.6 64 64 64z"/></svg>
+                </a>
+                <a href="#" aria-label="YouTube" title="YouTube">
+                    <svg viewBox="0 0 576 512"><path d="M549.65 124.08c-6.28-23.65-24.78-42.15-48.43-48.43C465.45 64 288 64 288 64S110.55 64 74.78 75.65c-23.65 6.28-42.15 24.78-48.43 48.43C16 159.75 16 256 16 256s0 96.25 10.35 131.92c6.28 23.65 24.78 42.15 48.43 48.43C110.55 448 288 448 288 448s177.45 0 213.22-11.65c23.65-6.28 42.15-24.78 48.43-48.43C560 352.25 560 256 560 256s0-96.25-10.35-131.92zM232 336V176l142 80-142 80z"/></svg>
+                </a>
+                </div>
+            </section>
+
+            <section aria-labelledby="contact-info" class="contact-info">
+                <div class="logo-box" aria-label="Logo CrazyPets">
+                    <svg viewBox="0 0 512 512" aria-hidden="true">
+                    <circle cx="256" cy="256" r="208" fill="#fb8c5a"/>
+                    <circle cx="256" cy="256" r="144" fill="#fff"/>
+                    <circle cx="256" cy="256" r="80" fill="#fb8c5a"/>
+                    </svg>
+                    <span class="logo-prompt">Cuc Pet</span>
+                </div>
+                <p><strong>Địa chỉ: </strong>69/68 Đường Đặng Thuỳ Trâm, Phường 13, Quận Bình Thạnh, TP.HCM</p>
+                <p><strong>Điện thoại: </strong>0983 627 080</p>
+                <p><strong>Email: </strong><a href="cucpet@gmail.com">cucpet@gmail.com</a></p>
+                <p><strong>Thứ 2 - Thứ 6: </strong>09:30 - 19:00</p>
+                <p><strong>Thứ 7: </strong>10:00 - 17:00</p>
+                <p><strong>Chủ Nhật: </strong><span class="highlight-text">Nghỉ</span></p>
+            </section>
+
+            <nav aria-labelledby="about-us">
+                <h3 id="about-us">Về Chúng Tôi</h3>
+                <ul>
+                <li><a href="{{ url_for('home') }}">Trang chủ</a></li>
+                <li><a href="{{ url_for('shopping') }}">Mua sắm</a></li>
+                <li><a href="{{ url_for('service') }}">Dịch vụ</a></li>
+                <li><a href="{{ url_for('contact') }}">Liên hệ</a></li>
+                <li><a href="{{ url_for('chatbot') }}">Chatbot</a></li>
+                </ul>
+            </nav>
+
+            <nav aria-labelledby="useful-links">
+                <h3 id="useful-links">Liên Kết Hữu Ích</h3>
+                <ul>
+                    <li>Tuyển dụng</li>
+                    <li>Trung tâm hỗ trợ</li>
+                    <li>Chính sách hoàn trả</li>
+                    <li>Tìm kiếm nâng cao</li>
+                    <li>Chính sách bảo mật</li>
+                    <li>Điều khoản &amp; điều kiện</li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

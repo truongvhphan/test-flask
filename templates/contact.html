@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Shop</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap&subset=vietnamese" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+</head>
+<body>
+    <nav>
+        <header>
+        <div class="logo-container">
+            <a href="{{ url_for('home') }}" class="logo">
+            <img src="/static/images/home/logo.png" alt="logocucpet">
+            </a>
+            <img src="/static/images/home/logo-text.png" alt="CUC PET Text" class="logo-text-img">
+        </div>
+        <ul class="nav-menu">
+            <li><a href="{{ url_for('home') }}">Trang chủ</a></li>
+            <li><a href="{{ url_for('shopping') }}">Mua sắm</a></li>
+            <li><a href="{{ url_for('service') }}">Dịch vụ</a></li>
+            <li><a href="{{ url_for('contact') }}">Liên hệ</a></li>
+            <li><a href="{{ url_for('chatbot') }}">Chatbot</a></li>
+        </ul>
+        <div class="nav-icon">
+            <a href="#" class="search-icon"><i class='bx bx-search-alt-2'></i></a>
+            <a href="#"><i class='bx bx-user-circle'></i></a>
+            <a href="#"><i class='bx bx-cart-alt'></i></a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+
+        <div id="searchContainer" class="search-container" style="display: none;">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+            <button id="closeSearch" aria-label="Đóng tìm kiếm">✖</button>
+        </div>
+        </header>
+    </nav>
+    <section class="contact-section">
+        <div class="image-overlay"></div>
+        <div class="text-container">
+        <h1>LIÊN HỆ VỚI CHÚNG TÔI</h1>
+        <p>Chúng tôi sẵn sàng hỗ trợ bạn!</p>
+        </div>
+        <div class="wave">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path fill="#F3F4F6"
+            d="M0 36L48 40.3C96 44.7 192 53.3 288 69.7C384 86 480 110 576 110.7C672 111 768 97 864 88.8C960 80.7 1056 78.3 1152 86.5C1248 94.7 1344 113.3 1392 122.2L1440 131V120H1392C1344 120 1248 120 1152 120C1056 120 960 120 864 120C768 120 672 120 576 120C480 120 384 120 288 120C192 120 96 120 48 120H0V36Z"/>
+        </svg>
+        </div>
+    </section>
+    <main class="info-main">
+        <div class="content-grid">
+        <div class="image-container" aria-label="Woman sitting cross-legged holding her French Bulldog dog" role="img">
+            <div class="organic-shape" aria-hidden="true"></div>
+            <img src="/static/images/contact/catanddog.png" alt="Happy young woman with French Bulldog"
+                onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f3119793-ce72-4174-878b-2816b9a1b4a3.png';" />
+        </div>
+        <div class="features-list" aria-label="List of pet services">
+            <article class="feature-item" tabindex="0">
+            <div class="feature-icon grooming">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" viewBox="0 0 24 24">
+                <path d="M10 19l-7-7 7-7"></path><path d="M14 19l7-7-7-7"></path><line x1="12" y1="5" x2="12" y2="19"></line>
+                </svg>
+            </div>
+            <div class="feature-content">
+                <h3 class="feature-title">Spa</h3>
+                <p class="feature-desc">Tận hưởng dịch vụ spa thư giãn với quy trình tắm, sấy, cắt tỉa và chăm sóc lông chuyên nghiệp, mang lại vẻ ngoài sạch đẹp và dễ chịu cho thú cưng.</p>
+            </div>
+            </article>
+
+            <article class="feature-item" tabindex="0">
+            <div class="feature-icon veterinary">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path>
+                </svg>
+            </div>
+            <div class="feature-content">
+                <h3 class="feature-title">Tiêm phòng</h3>
+                <p class="feature-desc">Đảm bảo sức khỏe toàn diện với các gói tiêm phòng đầy đủ – giúp thú cưng phòng ngừa các bệnh nguy hiểm ngay từ sớm, theo đúng lịch khuyến nghị của bác sĩ thú y.</p>
+            </div>
+            </article>
+
+            <article class="feature-item" tabindex="0">
+            <div class="feature-icon daycamp">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" viewBox="0 0 24 24">
+                <path d="M3 9l9-7 9 7"></path><path d="M9 22V12h6v10"></path>
+                </svg>
+            </div>
+            <div class="feature-content">
+                <h3 class="feature-title">Chăm sóc sức khoẻ</h3>
+                <p class="feature-desc">Từ cắt móng, vệ sinh tai đến xử lý ve rận – dịch vụ chăm sóc toàn diện giúp thú cưng luôn khỏe mạnh, sạch sẽ và tràn đầy sức sống mỗi ngày.</p>
+            </div>
+            </article>
+
+            <article class="feature-item" tabindex="0">
+            <div class="feature-icon training">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><line x1="12" y1="6" x2="12" y2="12"></line><line x1="16" y1="12" x2="12" y2="12"></line>
+                </svg>
+            </div>
+            <div class="feature-content">
+                <h3 class="feature-title">Huấn luyện</h3>
+                <p class="feature-desc">Huấn luyện cơ bản và nâng cao với chuyên gia – giúp thú cưng phát triển hành vi tốt, nghe lời, thân thiện và hòa đồng hơn với môi trường xung quanh.</p>
+            </div>
+            </article>
+        </div>
+        </div>
+    </main>
+    <div class="page-wrapper">
+        <div class="contact-box">
+        <div class="details-panel">
+            <div>
+            <div class="label-subtitle">Liên hệ</div>
+            <h1 class="label-title">Cùng trò chuyện nhé!</h1>
+            <p class="text-description">
+               Chúng tôi luôn sẵn sàng lắng nghe bạn. Hãy điền vào biểu mẫu bên dưới và chúng tôi sẽ phản hồi trong thời gian sớm nhất.
+            </p>
+            </div>
+
+            <div class="detail-items">
+            <div class="detail-row">
+                <svg class="icon-small" viewBox="0 0 24 24"><path d="M12 2C8 2 4 4 4 8c0 6 8 14 8 14s8-8 8-14c0-4-4-6-8-6z"/></svg>
+                69/68 Đường Đặng Thuỳ Trâm, Phường 13, Quận Bình Thạnh, TP.HCM
+            </div>
+            <div class="detail-row">
+                <svg class="icon-small" viewBox="0 0 24 24"><path d="M4 4h16v2H4zm0 4h10v2H4zm0 4h7v2H4z"/></svg>
+                cucpet@gmail.com
+            </div>
+            <div class="detail-row">
+                <svg class="icon-small" viewBox="0 0 24 24"><path d="M6.6 10.8l1.4-1.4 4 4-1.4 1.4z"/></svg>
+                0983 627 080
+            </div>
+            </div>
+
+            <div>
+            <div class="label-social">Follow us</div>
+            <div class="social-links">
+                <a href="#"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-3h2.5V9a3.5 3.5 0 0 1 3.5-3.5h3v3h-3a1 1 0 0 0-1 1v2h4l-1 3h-3v7A10 10 0 0 0 22 12z"/></svg></a>
+                <a href="#"><svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 0 0 1.88-2.37 8.45 8.45 0 0 1-2.71 1.03 4.27 4.27 0 0 0-7.28 3.89A12.1 12.1 0 0 1 3.1 4.8a4.25 4.25 0 0 0 1.32 5.69A4.27 4.27 0 0 1 2.8 9v.05a4.27 4.27 0 0 0 3.43 4.18 4.27 4.27 0 0 1-1.93.07 4.27 4.27 0 0 0 4 2.97 8.56 8.56 0 0 1-5.3 1.83A8.75 8.75 0 0 1 2 19.54a12.09 12.09 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2v-.56A8.64 8.64 0 0 0 24 5.3a8.4 8.4 0 0 1-2.54.7z"/></svg></a>
+                <a href="#"><svg viewBox="0 0 24 24"><path d="M10.9 2.1c-.3 0-.5.2-.5.5v18.8c0 .3.2.5.5.5h2.2c.3 0 .5-.2.5-.5V2.6c0-.3-.2-.5-.5-.5h-2.2zm-4.6 6.1c-.3 0-.5.2-.5.5v12.2c0 .3.2.5.5.5h2.2c.3 0 .5-.2.5-.5V8.7c0-.3-.2-.5-.5-.5H6.3zm9.2 3c-.3 0-.5.2-.5.5v9.2c0 .3.2.5.5.5h2.2c.3 0 .5-.2.5-.5v-9.2c0-.3-.2-.5-.5-.5h-2.2z"/></svg></a>
+            </div>
+            </div>
+        </div>
+
+        <form class="form-panel">
+            <input class="form-input" type="text" placeholder="Tên của bạn" required />
+            <input class="form-input" type="email" placeholder="Email của bạn" required />
+            <textarea class="form-textarea" placeholder="Tin nhắn của bạn" required></textarea>
+            <button class="button-submit" type="submit">Gửi</button>
+        </form>
+        </div>
+    </div>
+    <footer class="footer-section" role="contentinfo" aria-label="Footer">
+        <div class="footer-container">
+            <section aria-labelledby="contact-us">
+                <h3 id="contact-us">Liên hệ với chúng tôi</h3>
+                <p>Nhập email để nhận thông báo và ưu đãi từ Cuc Pet.</p>
+                <form class="subscribe-form" aria-label="Form đăng ký nhận tin">
+                    <input
+                    class="email-input"
+                    type="email"
+                    placeholder="Địa chỉ Email"
+                    aria-label="Email"
+                    required
+                    />
+                    <button class="subscribe-button" type="submit">Đăng ký</button>
+                </form>
+                <div class="social-icons" aria-label="Mạng xã hội">
+                <a href="#" aria-label="Facebook" title="Facebook">
+                    <svg viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91V132.1c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S293.55 0 262.36 0c-73.07 0-121.11 44.38-121.11 124.72v70.62H89.09V288h52.16v224h100.2V288z"/></svg>
+                </a>
+                <a href="#" aria-label="TikTok" title="TikTok">
+                    <svg viewBox="0 0 448 512"><path d="M448 209.3v125.7c-35.3 0-69.3-10.4-98-28.5v135.2c0 90.5-73.5 164-164 164S22 462.2 22 371.7s73.5-164 164-164c14.1 0 27.9 1.8 41.1 5.1v92.3c-13.2-4.3-27.3-6.6-41.1-6.6-50.1 0-90.7 40.6-90.7 90.7s40.6 90.7 90.7 90.7 90.7-40.6 90.7-90.7V64h60.2c0 35.3 28.6 64 64 64z"/></svg>
+                </a>
+                <a href="#" aria-label="YouTube" title="YouTube">
+                    <svg viewBox="0 0 576 512"><path d="M549.65 124.08c-6.28-23.65-24.78-42.15-48.43-48.43C465.45 64 288 64 288 64S110.55 64 74.78 75.65c-23.65 6.28-42.15 24.78-48.43 48.43C16 159.75 16 256 16 256s0 96.25 10.35 131.92c6.28 23.65 24.78 42.15 48.43 48.43C110.55 448 288 448 288 448s177.45 0 213.22-11.65c23.65-6.28 42.15-24.78 48.43-48.43C560 352.25 560 256 560 256s0-96.25-10.35-131.92zM232 336V176l142 80-142 80z"/></svg>
+                </a>
+                </div>
+            </section>
+
+            <section aria-labelledby="contact-info" class="contact-info">
+                <div class="logo-box" aria-label="Logo CrazyPets">
+                    <svg viewBox="0 0 512 512" aria-hidden="true">
+                    <circle cx="256" cy="256" r="208" fill="#fb8c5a"/>
+                    <circle cx="256" cy="256" r="144" fill="#fff"/>
+                    <circle cx="256" cy="256" r="80" fill="#fb8c5a"/>
+                    </svg>
+                    <span class="logo-prompt">Cuc Pet</span>
+                </div>
+                <p><strong>Địa chỉ: </strong>69/68 Đường Đặng Thuỳ Trâm, Phường 13, Quận Bình Thạnh, TP.HCM</p>
+                <p><strong>Điện thoại: </strong>0983 627 080</p>
+                <p><strong>Email: </strong><a href="cucpet@gmail.com">cucpet@gmail.com</a></p>
+                <p><strong>Thứ 2 - Thứ 6: </strong>09:30 - 19:00</p>
+                <p><strong>Thứ 7: </strong>10:00 - 17:00</p>
+                <p><strong>Chủ Nhật: </strong><span class="highlight-text">Nghỉ</span></p>
+            </section>
+
+            <nav aria-labelledby="about-us">
+                <h3 id="about-us">Về Chúng Tôi</h3>
+                <ul>
+                <li><a href="{{ url_for('home') }}">Trang chủ</a></li>
+                <li><a href="{{ url_for('shopping') }}">Mua sắm</a></li>
+                <li><a href="{{ url_for('service') }}">Dịch vụ</a></li>
+                <li><a href="{{ url_for('contact') }}">Liên hệ</a></li>
+                <li><a href="{{ url_for('chatbot') }}">Chatbot</a></li>
+                </ul>
+            </nav>
+
+            <nav aria-labelledby="useful-links">
+                <h3 id="useful-links">Liên Kết Hữu Ích</h3>
+                <ul>
+                    <li>Tuyển dụng</li>
+                    <li>Trung tâm hỗ trợ</li>
+                    <li>Chính sách hoàn trả</li>
+                    <li>Tìm kiếm nâng cao</li>
+                    <li>Chính sách bảo mật</li>
+                    <li>Điều khoản &amp; điều kiện</li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

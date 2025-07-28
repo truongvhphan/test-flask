@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Shop</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap&subset=vietnamese" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+</head>
+<body>
+    <nav>
+        <header>
+        <div class="logo-container">
+            <a href="{{ url_for('home') }}" class="logo">
+            <img src="/static/images/home/logo.png" alt="logocucpet">
+            </a>
+            <img src="/static/images/home/logo-text.png" alt="CUC PET Text" class="logo-text-img">
+        </div>
+        <ul class="nav-menu">
+            <li><a href="{{ url_for('home') }}">Trang chủ</a></li>
+            <li><a href="{{ url_for('shopping') }}">Mua sắm</a></li>
+            <li><a href="{{ url_for('service') }}">Dịch vụ</a></li>
+            <li><a href="{{ url_for('contact') }}">Liên hệ</a></li>
+            <li><a href="{{ url_for('chatbot') }}">Chatbot</a></li>
+        </ul>
+        <div class="nav-icon">
+            <a href="#" class="search-icon"><i class='bx bx-search-alt-2'></i></a>
+            <a href="#"><i class='bx bx-user-circle'></i></a>
+            <a href="#"><i class='bx bx-cart-alt'></i></a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+
+        <div id="searchContainer" class="search-container" style="display: none;">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+            <button id="closeSearch" aria-label="Đóng tìm kiếm">✖</button>
+        </div>
+        </header>
+    </nav>
+        <section class="shopping-banner">
+        <div class="shopping-image">
+            <img src="/static/images/shopping/banner.png" alt="Pet Image" />
+        </div>
+        <div class="shopping-text">
+            <h1>
+            GẶP GỠ NHỮNG NGƯỜI<br />
+            BẠN 4 CHÂN MỚI!
+            </h1>
+        </div>
+        </section>
+
+    <section class="promo-line">
+        <div class="promo-message">
+        NGÀY HỘI SALE - GIẢM GIÁ ĐẾN 40% CÁC PHỤ KIỆN TẠI WEBSITE!
+        </div>
+        <button class="btn-buy-now">Mua ngay</button>
+    </section>
+
+    <section class="collection-shopping" aria-label="Shop by collection section">
+        <h2>CÁC MỤC NỔI BẬT</h2>
+        <div class="collection-container" role="list">
+            <div class="collection-card" tabindex="0" aria-label="Dog" data-category="Dog">
+                <div class="collection-image" aria-hidden="true">
+                    <img src="/static/images/shopping/collec-dog.png"
+                         alt="Dog"
+                         onerror="this.onerror=null;this.src='https://placehold.co/160x160?text=No+Image';"/>
+                </div>
+                <div class="collection-label">Chó</div>
+            </div>
+            <div class="collection-card" tabindex="0" aria-label="Cat" data-category="Cat">
+                <div class="collection-image" aria-hidden="true">
+                    <img src="/static/images/shopping/collec-cat.png"
+                         alt="Cat"
+                         onerror="this.onerror=null;this.src='https://placehold.co/160x160?text=No+Image';"/>
+                </div>
+                <div class="collection-label">Mèo</div>
+            </div>
+            <div class="collection-card" tabindex="0" aria-label="Food" data-category="Food">
+                <div class="collection-image" aria-hidden="true">
+                    <img src="/static/images/shopping/collec-food.png"
+                         alt="Food"
+                         onerror="this.onerror=null;this.src='https://placehold.co/160x160?text=No+Image';"/>
+                </div>
+                <div class="collection-label">Thức ăn</div>
+            </div>
+            <div class="collection-card" tabindex="0" aria-label="Accessory" data-category="Accessory">
+                <div class="collection-image" aria-hidden="true">
+                    <img src="/static/images/shopping/collec-acc.png"
+                         alt="Goldfish swimming"
+                         onerror="this.onerror=null;this.src='https://placehold.co/160x160?text=No+Image';"/>
+                </div>
+                <div class="collection-label">Phụ kiện</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="content-wrapper" role="main">
+        <aside class="sidebar-nav" aria-label="Danh mục và Bộ lọc">
+            <nav class="nav-breadcrumb" aria-label="Đường dẫn điều hướng">
+                SẢN PHẨM <span aria-hidden="true">•</span> CỬA HÀNG <span aria-hidden="true">•</span>
+            </nav>
+            <div class="highlight-bar" aria-hidden="true"></div>
+
+            <section aria-labelledby="categories-title">
+                <h2 id="categories-title">Danh mục chính</h2>
+                <ul class="category-nav-list" role="list">
+                    <li>Đồ cho chó</li>
+                    <li>Đồ cho mèo</li>
+                    <li>Thức ăn thú cưng</li>
+                    <li>Phụ kiện thú cưng</li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="subcategory-title">
+                <ul class="subcategory-nav-list" role="list" id="subcategory-title" aria-label="Danh mục phụ">
+                    <li><a href="#" aria-current="page">Chó</a></li>
+                    <li><a href="#">Mèo</a></li>
+                    <li><a href="#">Thức ăn</a></li>
+                    <li><a href="#">Phụ kiện</a></li>
+                </ul>
+            </section>
+
+            <section class="rating-group" aria-labelledby="rating-title">
+                <h2 id="rating-title" style="font-weight: 700;">Đánh giá</h2>
+                <div class="star-rating-block" aria-label="4 trên 5 sao">
+                    <span aria-hidden="true" class="active-stars">★★★★☆</span>
+                    <span class="rating-count">(4)</span>
+                </div>
+                <div class="star-rating-block" aria-label="3 trên 5 sao">
+                    <span aria-hidden="true">★★★☆☆</span>
+                    <span class="rating-count">(4)</span>
+                </div>
+                <div class="star-rating-block" aria-label="2 trên 5 sao">
+                    <span aria-hidden="true">★★☆☆☆</span>
+                    <span class="rating-count">(4)</span>
+                </div>
+                <div class="star-rating-block" aria-label="1 trên 5 sao">
+                    <span aria-hidden="true">★☆☆☆☆</span>
+                    <span class="rating-count">(4)</span>
+                </div>
+            </section>
+
+            <div class="highlight-bar" aria-hidden="true"></div>
+
+            <section class="filter-panel" aria-labelledby="filter-by-title">
+                <h2 id="filter-by-title">Lọc theo</h2>
+                <label for="brand-select" class="filter-option-label">Thương hiệu</label>
+                <select id="brand-select" name="brand" aria-controls="products-grid" aria-label="Lọc sản phẩm theo thương hiệu">
+                    <option value="">Tất cả thương hiệu</option>
+                    <option value="brand1">Thương hiệu 1</option>
+                    <option value="brand2">Thương hiệu 2</option>
+                    <option value="brand3">Thương hiệu 3</option>
+                </select>
+            </section>
+        </aside>
+
+        <section class="primary-content" aria-label="Khu vực sản phẩm mới">
+            <div class="content-header">
+                <h1 class="content-title">SẢN PHẨM</h1>
+                <div class="view-sort-options" role="region" aria-label="Tùy chọn hiển thị và sắp xếp">
+                    <span>Hiển thị dạng</span>
+                    <div class="view-toggle-buttons" role="group" aria-label="Chọn kiểu hiển thị">
+                        <button 
+                            id="display-1" 
+                            aria-pressed="false" 
+                            title="Kiểu hiển thị 1" 
+                            aria-describedby="display-label"
+                        >
+                            <svg width="14" height="14" fill="none" stroke="currentColor" aria-hidden="true" viewBox="0 0 24 24">
+                                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                                <rect x="14" y="14" width="7" height="7" rx="1"/>
+                                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                            </svg>
+                        </button>
+                        <button 
+                            id="display-2" 
+                            aria-pressed="false" 
+                            title="Kiểu hiển thị 2"
+                            aria-describedby="display-label"
+                        >
+                            <svg width="14" height="14" fill="none" stroke="currentColor" aria-hidden="true" viewBox="0 0 24 24">
+                                <rect x="3" y="3" width="18" height="6" rx="1"/>
+                                <rect x="3" y="12" width="18" height="6" rx="1"/>
+                            </svg>
+                        </button>
+                        <button 
+                            id="display-3" 
+                            class="active" 
+                            aria-pressed="true" 
+                            title="Kiểu hiển thị 3"
+                            aria-describedby="display-label"
+                        >
+                            <svg width="14" height="14" fill="none" stroke="currentColor" aria-hidden="true" viewBox="0 0 24 24">
+                                <rect x="3" y="3" width="6" height="18" rx="1"/>
+                                <rect x="12" y="3" width="9" height="6" rx="1"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <label for="sort-select" class="visually-hidden">Sắp xếp sản phẩm</label>
+                    <div class="sort-options">
+                        <select id="sort-select" aria-controls="products-grid" aria-label="Sắp xếp sản phẩm">
+                            <option value="featured" selected>Nổi bật</option>
+                            <option value="price-low">Giá: Thấp đến Cao</option>
+                            <option value="price-high">Giá: Cao đến Thấp</option>
+                            <option value="newest">Mới nhất</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <section class="products-section" id="products-grid" aria-live="polite" aria-atomic="true" aria-relevant="additions removals">
+                <div class="products-grid">
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Cho Poodle Nho" data-category="Dog">
+                        <div class="product-labels">
+                            <span class="product-label label-new-product">New</span>
+                            <span class="product-label label-on-sale">Sale</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/poodlenho.png" alt="Chó Poodle Nhỏ" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Chó Poodle Nhỏ</p>
+                        <p class="product-price">5.000.000<span class="original-price">6.000.000</span></p>
+                        <button class="btn-quick-view" onclick="event.stopPropagation(); openQuickView(
+                        '/static/images/shopping/poodlenho.png',
+                        'Chó Poodle Nhỏ',
+                        'Thông minh, thân thiện và dễ huấn luyện. Phù hợp với mọi gia đình.',
+                        '5.000.000'
+                        )">Xem nhanh</button>
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Cho Poodle Tiny" data-category="Dog">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/poodletiny.png" alt="Chó Poodle Tiny" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Chó Poodle Tiny</p>
+                        <p class="product-price">8.000.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/poodletiny.png',
+                        'Chó Poodle Tiny',
+                        'Nhỏ gọn, ngoan ngoãn, cực kỳ đáng yêu.',
+                        '8.000.000'
+                        )">Xem nhanh</button>
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Cho Poodle Toy" data-category="Dog">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/poodletoy.png" alt="Chó Poodle Toy" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Chó Poodle Toy</p>
+                        <p class="product-price">7.500.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/poodletoy.png',
+                        'Chó Poodle Toy',
+                        'Dễ huấn luyện, lông không rụng, thân thiện.	',
+                        '7.500.000'
+                        )">Xem nhanh</button>
+                    </article>                    
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Meo Anh Long Ngan" data-category="Cat">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/meoanhlongngan.png" alt="Mèo Anh Lông Ngắn" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Mèo Anh Lông Ngắn</p>
+                        <p class="product-price">3.500.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/meoanhlongngan.png',
+                        'Mèo Anh Lông Ngắn',
+                        'Mặt tròn, lông mịn, hiền lành.',
+                        '3.500.000'
+                        )">Xem nhanh</button>                    
+                        </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Meo Anh Long Dai" data-category="Cat">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/meoanhlongdai.png" alt="Mèo Anh Lông Dài" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Mèo Anh Lông Dài</p>
+                        <p class="product-price">4.500.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/meoanhlongdai.png',
+                        'Mèo Anh Lông Dài',
+                        'Lông dài xù, mắt to, dễ thương.',
+                        '4.500.000'
+                        )">Xem nhanh</button>                    
+                        </article>
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Meo Ba Tu" data-category="Cat">
+                        <div class="product-labels">
+                            <span class="product-label label-on-sale">Sale</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/meobatu.png" alt="Mèo Ba Tư" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Mèo Ba Tư</p>
+                        <p class="product-price">4.500.000<span class="original-price">5.000.000</span></p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/meobatu.png',
+                        'Mèo Ba Tư',
+                        'Mặt bánh bao, lông dày, tính cách ngoan.',
+                        '4.500.000'
+                        )">Xem nhanh</button>  
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Hat" data-category="Food">
+                        <div class="product-labels">
+                            <span class="product-label label-new-product">New</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/hatchochonho.png" alt="Hạt Royal Canin cho chó nhỏ 2kg" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Hạt Royal Canin cho chó nhỏ 2kg</p>
+                        <p class="product-price">320.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/hatchochonho.png',
+                        'Hạt Royal Canin cho chó nhỏ 2kg',
+                        'Hỗ trợ tiêu hoá, dễ nhai.',
+                        '320.000'
+                        )">Xem nhanh</button>                      
+                        </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Hat" data-category="Food">
+                        <div class="product-labels">
+                            <span class="product-label label-on-sale">Sale</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/hatchomeo.png" alt="Hạt Bite of Wild cho mèo" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Hạt Bite of Wild cho mèo</p>
+                        <p class="product-price">210.000<span class="original-price">240.000</span></p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/hatchomeo.png',
+                        'Hạt Bite of Wild cho mèo',
+                        'Đầy đủ dinh dưỡng, giúp lông bóng mượt, tiêu hoá khoẻ.',
+                        '210.000'
+                        )">Xem nhanh</button>  
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Pate" data-category="Food">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/pate.png" alt="Pate Whiskas cho mèo" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Pate Whiskas cho mèo</p>
+                        <p class="product-price">22.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/pate.png',
+                        'Pate Whiskas cho mèo',
+                        'Hương vị hấp dẫn, kích thích ăn ngon.',
+                        '22.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Day Dat" data-category="Accessory">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/daydat.png" alt="Dây dắt chó kéo giãn 5m" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Dây dắt chó kéo giãn 5m</p>
+                        <p class="product-price">150.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/daydat.png',
+                        'Dây dắt chó kéo giãn 5m',
+                        'Có nút khoá, dùng đi dạo an toàn.',
+                        '150.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Vong Co" data-category="Accessory">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/vongco.png" alt="Vòng cổ chuông nhỏ cho mèo" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Vòng cổ chuông nhỏ cho mèo</p>
+                        <p class="product-price">40.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/vongco.png',
+                        'Vòng cổ chuông nhỏ cho mèo',
+                        'Nhỏ gọn, có chuông xinh xắn.',
+                        '40.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Long Van Chuyen" data-category="Accessory">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/longvanchuyen.png" alt="Lồng vận chuyển thú cưng" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Lồng vận chuyển thú cưng</p>
+                        <p class="product-price">320.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/longvanchuyen.png',
+                        'Lồng vận chuyển thú cưng',
+                        'Nhựa chắc chắn, thoáng khí.',
+                        '320.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Cho Corgi" data-category="Dog">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/chocorgi.png" alt="Chó Corgi Wales" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Chó Corgi Wales</p>
+                        <p class="product-price">10.000.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/chocorgi.png',
+                        'Chó Corgi Wales',
+                        'Chân ngắn, mông to, cực kỳ đáng yêu.',
+                        '10.000.000'
+                        )">Xem nhanh</button>
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Cho Phoc Soc" data-category="Dog">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/chophocsoc.png" alt="Chó Phốc Sóc" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Chó Phốc Sóc</p>
+                        <p class="product-price">8.000.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/chophocsoc.png',
+                        'Chó Phốc Sóc',
+                        'Nhỏ nhắn, lanh lợi, thích hợp nhà nhỏ.	',
+                        '8.000.000'
+                        )">Xem nhanh</button>
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Cho Alaska" data-category="Dog">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/alaska.png" alt="Chó Alaska" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Chó Alaska</p>
+                        <p class="product-price">14.000.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/alaska.png',
+                        'Chó Alaska	',
+                        'Thân hình to lớn, trung thành, lông dày đẹp.',
+                        '14.000.000'
+                        )">Xem nhanh</button>
+                    </article> 
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Meo Munchkin" data-category="Cat">
+                        <div class="product-labels">
+                            <span class="product-label label-new-product">New</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/meochanngan.png" alt="Mèo Munchkin" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Mèo Chân Ngắn</p>
+                        <p class="product-price">7.500.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/meochanngan.png',
+                        'Mèo Chân Ngắn',
+                        'Chân ngắn cực kỳ đáng yêu, hiền lành.',
+                        '7.500.000'
+                        )">Xem nhanh</button>
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Meo Ragdoll" data-category="Cat">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/meoragdoll.png" alt="Mèo Ragdoll" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Mèo Ragdoll</p>
+                        <p class="product-price">9.000.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/meoragdoll.png',
+                        'Mèo Ragdoll',
+                        'Ôm rất ngoan, hiền, thông minh.',
+                        '9.000.000'
+                        )">Xem nhanh</button>
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Meo Sphynx" data-category="Cat">
+                        <div class="product-labels">
+                            <span class="product-label label-on-sale">Sale</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/meosphynx.png" alt="Mèo Sphynx" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Mèo Sphynx</p>
+                        <p class="product-price">20.500.000<span class="original-price">25.000.000</span></p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/meosphynx.png',
+                        'Mèo Sphynx',
+                        'Da trơn, độc lạ, hiếm.',
+                        '20.500.000'
+                        )">Xem nhanh</button>    
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Pate Pedigree" data-category="Food">
+                        <div class="product-labels">
+                            <span class="product-label label-new-product">New</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/patepedigree.png" alt="Pate Pedigree gói 130g" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Pate Pedigree gói 130g</p>
+                        <p class="product-price">25.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/patepedigree.png',
+                        'Pate Pedigree gói 130g',
+                        'Vị ngon, dễ ăn, hấp dẫn.',
+                        '25.000'
+                        )">Xem nhanh</button>    
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Xuong Gam Cho Cho" data-category="Food">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/xuonggam.png" alt="Xương gặm cho chó vị sữa" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Xương gặm cho chó vị sữa</p>
+                        <p class="product-price">35.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/xuonggam.png',
+                        'Xương gặm cho chó vị sữa',
+                        'Giữ răng chắc khỏe.',
+                        '35.000'
+                        )">Xem nhanh</button>   
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Snack Ca Kho" data-category="Food">
+                        <div class="product-labels">
+                            <span class="product-label label-new-product">New</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/cakho.png" alt="Snack cá khô cho mèo" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Snack cá khô cho mèo</p>
+                        <p class="product-price">55.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/cakho.png',
+                        'Snack cá khô cho mèo',
+                        'Nhiều đạm, dễ tiêu hoá.',
+                        '55.000'
+                        )">Xem nhanh</button>   
+                    </article>
+                <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Ban chai long" data-category="Accessory">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/banchai.png" alt="Bàn chải chải lông tự rụng" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Bàn chải chải lông tự rụng</p>
+                        <p class="product-price">90.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/banchai.png',
+                        'Bàn chải chải lông tự rụng',
+                        'Tự gom lông rụng hiệu quả.',
+                        '90.000'
+                        )">Xem nhanh</button>  
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Cat Ve Sinh" data-category="Accessory">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/catvesinh.png" alt="Cát vệ sinh mèo mùi cafe" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Cát vệ sinh mèo mùi cafe</p>
+                        <p class="product-price">80.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/catvesinh.png',
+                        'Cát vệ sinh mèo mùi cafe',
+                        'Khử mùi, vón tốt, tiết kiệm.',
+                        '80.000'
+                        )">Xem nhanh</button>  
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Khay Ve Sinh" data-category="Accessory">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/khayvesinh.png" alt="Khay vệ sinh cho mèo" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Khay vệ sinh cho mèo</p>
+                        <p class="product-price">160.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/khayvesinh.png',
+                        'Khay vệ sinh cho mèo',
+                        'Kèm xẻng, kích thước lớn.',
+                        '160.000'
+                        )">Xem nhanh</button>  
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Cho Husky" data-category="Dog">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/chohusky.png" alt="Chó Husky" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Chó Husky</p>
+                        <p class="product-price">12.000.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/chohusky.png',
+                        'Chó Husky',
+                        'Ngoại hình ngầu, tính cách thân thiện, vui vẻ.',
+                        '12.000.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Cho Samoyed" data-category="Dog">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/chosamoyed.png" alt="Cho Samoyed" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Chó Samoyed</p>
+                        <p class="product-price">13.000.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/chosamoyed.png',
+                        'Chó Samoyed',
+                        'Lông trắng như tuyết, siêu thân thiện, đáng yêu.',
+                        '13.000.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Cho Golden Retriever" data-category="Dog">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/chogolden.png" alt="Chó Golden Retriever" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Chó Golden Retriever</p>
+                        <p class="product-price">9.500.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/chogolden.png',
+                        'Chó Golden Retriever',
+                        'Hiền lành, thông minh, thích chơi với trẻ em.',
+                        '9.500.000'
+                        )">Xem nhanh</button> 
+                    </article>                
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Meo Bengal" data-category="Cat">
+                        <div class="product-labels">
+                            <span class="product-label label-new-product">New</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/meobengal.png" alt="Mèo Bengal" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Mèo Bengal</p>
+                        <p class="product-price">12.000.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/meobengal.png',
+                        'Mèo Bengal',
+                        'Lông vằn như báo, năng động, quý hiếm.',
+                        '12.000.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Meo Tai Cụp" data-category="Cat">
+                        <div class="product-labels">
+                            <span class="product-label label-new-product">New</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/meotaicup.png" alt="Mèo Tai Cụp" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Mèo Tai Cụp</p>
+                        <p class="product-price">6.000.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/meotaicup.png',
+                        'Mèo Tai Cụp',
+                        'Tai cụp dễ thương, thân thiện.',
+                        '6.000.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Meo Main Coon" data-category="Cat">
+                        <div class="product-labels">
+                            <span class="product-label label-new-product">New</span>
+                            <span class="product-label label-on-sale">Sale</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/meomaincoon.png" alt="Mèo Maine Coon" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Mèo Maine Coon</p>
+                        <p class="product-price">50.000.000<span class="original-price">55.000.000</span></p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/meomaincoon.png',
+                        'Mèo Maine Coon',
+                        'Lớn, lông xù, tính cách hoàng gia.',
+                        '50.000.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Hat Fitmin CHo Meo Lon 3kg" data-category="Food">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/hatfitmin.png" alt="Hạt Fitmin cho mèo lớn 3kg" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Hạt Fitmin cho mèo lớn 3kg</p>
+                        <p class="product-price">290.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/hatfitmin.png',
+                        'Hạt Fitmin cho mèo lớn 3kg',
+                        'Ít béo, tăng đề kháng.',
+                        '290.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Sup Thuong" data-category="Food">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/supthuong.png" alt="Súp thưởng Ciao cho mèo" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Súp thưởng Ciao cho mèo</p>
+                        <p class="product-price">10.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/supthuong.png',
+                        'Súp thưởng Ciao cho mèo',
+                        'Dễ ăn, nhiều vị, chống ngán.',
+                        '10.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Banh Ca Cho Meo" data-category="Food">
+                        <div class="product-labels">
+                            <span class="product-label label-new-product">New</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/banhca.png" alt="Bánh cá cho mèo" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Bánh cá cho mèo</p>
+                        <p class="product-price">20.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/banhca.png',
+                        'Bánh cá cho mèo',
+                        'Thơm ngon, dễ ăn, kích thích vị giác.',
+                        '10.000'
+                        )">Xem nhanh</button>                     
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Ao Hoodie Cho Cho" data-category="Accessory">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/aohoodie.png" alt="Áo hoodie cho chó nhỏ" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Áo hoodie cho chó nhỏ</p>
+                        <p class="product-price">60.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/aohoodie.png',
+                        'Áo hoodie cho chó nhỏ',
+                        'Dễ thương, giữ ấm, co giãn.',
+                        '60.000'
+                        )">Xem nhanh</button>  
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Ro Mom Cho Cho" data-category="Accessory">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/romom.png" alt="Rọ mõm mềm cho chó" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Rọ mõm mềm cho chó</p>
+                        <p class="product-price">70.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/romom.png',
+                        'Rọ mõm mềm cho chó',
+                        'An toàn khi ra đường.',
+                        '70.000'
+                        )">Xem nhanh</button>  
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Leu Ngu Cho Meo" data-category="Accessory">
+                        <div class="product-labels">
+                            <span class="product-label label-new-product">New</span>
+                            <span class="product-label label-on-sale">Sale</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/leungu.png" alt="Lều ngủ mèo gấp gọn" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Lều ngủ mèo gấp gọn</p>
+                        <p class="product-price">240.000<span class="original-price">360.000</span></p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/leungu.png',
+                        'Lều ngủ mèo gấp gọn',
+                        'Có đệm, gọn nhẹ, dễ xếp.',
+                        '240.000'
+                        )">Xem nhanh</button>  
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Cho Chihuahua" data-category="Dog">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/chochihuahua.png" alt="Chó Chihuahua" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Chó Chihuahua</p>
+                        <p class="product-price">4.800.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/chochihuahua.png',
+                        'Chó Chihuahua',
+                        'Siêu nhỏ, trung thành, cảnh báo tốt.',
+                        '4.800.000'
+                        )">Xem nhanh</button>  
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Cho Bull Phap" data-category="Dog">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/chobull.png" alt="Chó Bull Pháp" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Chó Bull Pháp</p>
+                        <p class="product-price">10.000.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/chobull.png',
+                        'Chó Bull Pháp',
+                        'Mặt nhăn đặc trưng, hiền lành, không sủa nhiều.',
+                        '10.000.000'
+                        )">Xem nhanh</button>  
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Cho Becgie Đuc" data-category="Dog">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/becgie.png" alt="Chó Becgie Đức" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Chó Becgie Đức</p>
+                        <p class="product-price">11.500.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/becgie.png',
+                        'Chó Becgie Đức',
+                        'Thông minh, huấn luyện tốt, bảo vệ tuyệt vời.',
+                        '11.500.000'
+                        )">Xem nhanh</button>  
+                    </article>                    
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Meo Burmese" data-category="Cat">
+                        <div class="product-labels">
+                            <span class="product-label label-new-product">New</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/burmese.png" alt="Mèo Burmese" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Mèo Burmese</p>
+                        <p class="product-price">4.200.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/burmese.png',
+                        'Mèo Burmese',
+                        'Dễ gần, mắt to, rất thân thiện.',
+                        '4.200.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Meo Abyssinian" data-category="Cat">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/abyssinian.png" alt="Mèo Abyssinian" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Mèo Abyssinian</p>
+                        <p class="product-price">5.500.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/abyssinian.png',
+                        'Mèo Abyssinian',
+                        'Cổ điển, linh hoạt, cực kỳ năng động.',
+                        '5.500.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Meo Nga Xanh" data-category="Cat">
+                        <div class="product-labels">
+                            <span class="product-label label-on-sale">Sale</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/ngaxanh.png" alt="Mèo Nga Xanh" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Mèo Nga Xanh</p>
+                        <p class="product-price">6.500.000<span class="original-price">7.500.000</span></p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/ngaxanh.png',
+                        'Mèo Nga Xanh',
+                        'Lông xanh ánh bạc, mắt xanh đẹp mê ly.',
+                        '6.500.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Snack Ga Say" data-category="Food">
+                        <div class="product-labels">
+                            <span class="product-label label-new-product">New</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/snackga.png" alt="Snack gà sấy cho mèo" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Snack gà sấy cho mèo</p>
+                        <p class="product-price">28.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/snackga.png',
+                        'Snack gà sấy cho mèo',
+                        'Ít béo, nhiều dinh dưỡng.',
+                        '28.000'
+                        )">Xem nhanh</button>                     
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Vitamin Tong Hop" data-category="Food">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/vitamin.png" alt="Vitamin tổng hợp dạng viên" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Vitamin tổng hợp dạng viên</p>
+                        <p class="product-price">85.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/vitamin.png',
+                        'Vitamin tổng hợp dạng viên',
+                        'Tăng miễn dịch.',
+                        '85.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Sua Bot" data-category="Food">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/suabot.png" alt="Sữa bột Bio Milk cho thú cưng" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Sữa bột Bio Milk cho thú cưng</p>
+                        <p class="product-price">120.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/suabot.png',
+                        'Sữa bột Bio Milk cho thú cưng',
+                        'Dễ hấp thụ, bổ sung canxi.',
+                        '120.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Chuong Sat" data-category="Accessory">
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/chuong.png" alt="Chuồng sắt 2 tầng gấp gọn" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Chuồng sắt 2 tầng gấp gọn</p>
+                        <p class="product-price">680.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/chuong.png',
+                        'Chuồng sắt 2 tầng gấp gọn',
+                        'Có bánh xe, tiện vệ sinh.',
+                        '680.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Tham Lam Mat" data-category="Accessory">
+                        <div class="product-labels">
+                            <span class="product-label label-new-product">New</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/tham.png" alt="Thảm làm mát thú cưng" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Thảm làm mát thú cưng</p>
+                        <p class="product-price">170.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/tham.png',
+                        'Thảm làm mát thú cưng',
+                        'Dùng hè, không cần điện.',
+                        '170.000'
+                        )">Xem nhanh</button> 
+                    </article>
+                    <article class="product-item" onclick="openProductModal(this)" tabindex="0" aria-label="Tui Xach Van Chuyen" data-category="Accessory">
+                        <div class="product-labels">
+                            <span class="product-label label-new-product">New</span>
+                        </div>
+                        <div class="product-img-container">
+                            <img src="/static/images/shopping/tuixach.png" alt="Túi xách đeo vai vận chuyển" loading="lazy" onerror="this.style.display='none'" />
+                        </div>
+                        <p class="product-name">Túi xách đeo vai vận chuyển</p>
+                        <p class="product-price">350.000</p>
+                        <button class="btn-quick-view" onclick="openQuickView(
+                        '/static/images/shopping/tuixach.png',
+                        'Túi xách đeo vai vận chuyển',
+                        'Vải lưới thoáng khí, tiện lợi.',
+                        '350.000'
+                        )">Xem nhanh</button> 
+                    </article>         
+                </div>
+            </section>
+
+            <nav class="page-navigation" role="navigation" aria-label="Pagination">
+                <button id="prevPage" class="arrow-btn" aria-label="Previous Page" disabled>&laquo;</button>
+        
+                <button class="page-btn active" aria-current="page">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">5</button>
+                <button class="page-btn">6</button>
+                
+                <button id="nextPage" class="arrow-btn" aria-label="Next Page">&raquo;</button>
+            </nav>
+        </section>
+    </div>
+
+    <div class="snackbar" id="snackbar">Đã chọn danh mục</div>
+    
+    <footer class="footer-section" role="contentinfo" aria-label="Footer">
+        <div class="footer-container">
+            <section aria-labelledby="contact-us">
+                <h3 id="contact-us">Liên hệ với chúng tôi</h3>
+                <p>Nhập email để nhận thông báo và ưu đãi từ Cuc Pet.</p>
+                <form class="subscribe-form" aria-label="Form đăng ký nhận tin">
+                    <input
+                    class="email-input"
+                    type="email"
+                    placeholder="Địa chỉ Email"
+                    aria-label="Email"
+                    required
+                    />
+                    <button class="subscribe-button" type="submit">Đăng ký</button>
+                </form>
+                <div class="social-icons" aria-label="Mạng xã hội">
+                <a href="#" aria-label="Facebook" title="Facebook">
+                    <svg viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91V132.1c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S293.55 0 262.36 0c-73.07 0-121.11 44.38-121.11 124.72v70.62H89.09V288h52.16v224h100.2V288z"/></svg>
+                </a>
+                <a href="#" aria-label="TikTok" title="TikTok">
+                    <svg viewBox="0 0 448 512"><path d="M448 209.3v125.7c-35.3 0-69.3-10.4-98-28.5v135.2c0 90.5-73.5 164-164 164S22 462.2 22 371.7s73.5-164 164-164c14.1 0 27.9 1.8 41.1 5.1v92.3c-13.2-4.3-27.3-6.6-41.1-6.6-50.1 0-90.7 40.6-90.7 90.7s40.6 90.7 90.7 90.7 90.7-40.6 90.7-90.7V64h60.2c0 35.3 28.6 64 64 64z"/></svg>
+                </a>
+                <a href="#" aria-label="YouTube" title="YouTube">
+                    <svg viewBox="0 0 576 512"><path d="M549.65 124.08c-6.28-23.65-24.78-42.15-48.43-48.43C465.45 64 288 64 288 64S110.55 64 74.78 75.65c-23.65 6.28-42.15 24.78-48.43 48.43C16 159.75 16 256 16 256s0 96.25 10.35 131.92c6.28 23.65 24.78 42.15 48.43 48.43C110.55 448 288 448 288 448s177.45 0 213.22-11.65c23.65-6.28 42.15-24.78 48.43-48.43C560 352.25 560 256 560 256s0-96.25-10.35-131.92zM232 336V176l142 80-142 80z"/></svg>
+                </a>
+                </div>
+            </section>
+
+            <section aria-labelledby="contact-info" class="contact-info">
+                <div class="logo-box" aria-label="Logo CrazyPets">
+                    <svg viewBox="0 0 512 512" aria-hidden="true">
+                    <circle cx="256" cy="256" r="208" fill="#fb8c5a"/>
+                    <circle cx="256" cy="256" r="144" fill="#fff"/>
+                    <circle cx="256" cy="256" r="80" fill="#fb8c5a"/>
+                    </svg>
+                    <span class="logo-prompt">Cuc Pet</span>
+                </div>
+                <p><strong>Địa chỉ: </strong>69/68 Đường Đặng Thuỳ Trâm, Phường 13, Quận Bình Thạnh, TP.HCM</p>
+                <p><strong>Điện thoại: </strong>0983 627 080</p>
+                <p><strong>Email: </strong><a href="cucpet@gmail.com">cucpet@gmail.com</a></p>
+                <p><strong>Thứ 2 - Thứ 6: </strong>09:30 - 19:00</p>
+                <p><strong>Thứ 7: </strong>10:00 - 17:00</p>
+                <p><strong>Chủ Nhật: </strong><span class="highlight-text">Nghỉ</span></p>
+            </section>
+
+            <nav aria-labelledby="about-us">
+                <h3 id="about-us">Về Chúng Tôi</h3>
+                <ul>
+                <li><a href="{{ url_for('home') }}">Trang chủ</a></li>
+                <li><a href="{{ url_for('shopping') }}">Mua sắm</a></li>
+                <li><a href="{{ url_for('service') }}">Dịch vụ</a></li>
+                <li><a href="{{ url_for('contact') }}">Liên hệ</a></li>
+                <li><a href="{{ url_for('chatbot') }}">Chatbot</a></li>
+                </ul>
+            </nav>
+
+            <nav aria-labelledby="useful-links">
+                <h3 id="useful-links">Liên Kết Hữu Ích</h3>
+                <ul>
+                    <li>Tuyển dụng</li>
+                    <li>Trung tâm hỗ trợ</li>
+                    <li>Chính sách hoàn trả</li>
+                    <li>Tìm kiếm nâng cao</li>
+                    <li>Chính sách bảo mật</li>
+                    <li>Điều khoản &amp; điều kiện</li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+    <div id="quickViewModal" class="modal-shopping">
+    <div class="modal-content-shopping">
+        <button class="close-modal-shopping" onclick="closeQuickView()" aria-label="Đóng">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M18.3 5.71a1 1 0 0 0-1.42 0L12 10.59 7.12 5.7a1 1 0 0 0-1.41 1.42l4.88 4.88-4.88 4.88a1 1 0 1 0 1.41 1.42L12 13.41l4.88 4.88a1 1 0 0 0 1.42-1.42l-4.88-4.88 4.88-4.88a1 1 0 0 0 0-1.42Z"/>
+        </svg>
+        </button>
+
+        <div class="modal-body-shopping">
+        <img id="modalImage-shopping" src="" alt="Product Image">
+        <div class="modal-details-shopping">
+            <h2 id="modalTitle-shopping">Tên sản phẩm</h2>
+            <p id="modalDescription-shopping">Mô tả sản phẩm...</p>
+            <p class="modal-price-shopping" id="modalPrice-shopping">Giá: 0đ</p>
+            <button class="btn-buy" onclick="addToCart()">MUA NGAY</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    <script src="/static/shopping.js"></script>
+</body>
+</html>

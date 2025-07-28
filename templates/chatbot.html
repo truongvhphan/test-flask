@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Shop</title>
+    <link rel="stylesheet" href="/static/chatbot.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap&subset=vietnamese" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+</head>
+<body>
+    <nav>
+        <header>
+        <div class="logo-container">
+            <a href="{{ url_for('home') }}" class="logo">
+            <img src="/static/images/home/logo.png" alt="logocucpet">
+            </a>
+            <img src="/static/images/home/logo-text.png" alt="CUC PET Text" class="logo-text-img">
+        </div>
+        <ul class="nav-menu">
+            <li><a href="{{ url_for('home') }}">Trang chủ</a></li>
+            <li><a href="{{ url_for('shopping') }}">Mua sắm</a></li>
+            <li><a href="{{ url_for('service') }}">Dịch vụ</a></li>
+            <li><a href="{{ url_for('contact') }}">Liên hệ</a></li>
+            <li><a href="{{ url_for('chatbot') }}">Chatbot</a></li>
+        </ul>
+        <div class="nav-icon">
+            <a href="#" class="search-icon"><i class='bx bx-search-alt-2'></i></a>
+            <a href="#"><i class='bx bx-user-circle'></i></a>
+            <a href="#"><i class='bx bx-cart-alt'></i></a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+
+        <div id="searchContainer" class="search-container" style="display: none;">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+            <button id="closeSearch" aria-label="Đóng tìm kiếm">✖</button>
+        </div>
+        </header>
+    </nav>
+    <div>
+        <h1 class="header-title">Chatbot Dịch Vụ Thú Cưng</h1>
+    </div>
+
+    <main class="chat-container">
+        <div id="chat-window" class="chat-window"></div>
+
+        <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Nhập câu hỏi hoặc chọn dịch vụ..." autocomplete="off" />
+        <button id="send-btn">Gửi</button>
+        </div>
+    </main>
+  
+        <footer class="footer-section" role="contentinfo" aria-label="Footer">
+        <div class="footer-container">
+            <section aria-labelledby="contact-us">
+                <h3 id="contact-us">Liên hệ với chúng tôi</h3>
+                <p>Nhập email để nhận thông báo và ưu đãi từ Cuc Pet.</p>
+                <form class="subscribe-form" aria-label="Form đăng ký nhận tin">
+                    <input
+                    class="email-input"
+                    type="email"
+                    placeholder="Địa chỉ Email"
+                    aria-label="Email"
+                    required
+                    />
+                    <button class="subscribe-button" type="submit">Đăng ký</button>
+                </form>
+                <div class="social-icons" aria-label="Mạng xã hội">
+                <a href="#" aria-label="Facebook" title="Facebook">
+                    <svg viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91V132.1c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S293.55 0 262.36 0c-73.07 0-121.11 44.38-121.11 124.72v70.62H89.09V288h52.16v224h100.2V288z"/></svg>
+                </a>
+                <a href="#" aria-label="TikTok" title="TikTok">
+                    <svg viewBox="0 0 448 512"><path d="M448 209.3v125.7c-35.3 0-69.3-10.4-98-28.5v135.2c0 90.5-73.5 164-164 164S22 462.2 22 371.7s73.5-164 164-164c14.1 0 27.9 1.8 41.1 5.1v92.3c-13.2-4.3-27.3-6.6-41.1-6.6-50.1 0-90.7 40.6-90.7 90.7s40.6 90.7 90.7 90.7 90.7-40.6 90.7-90.7V64h60.2c0 35.3 28.6 64 64 64z"/></svg>
+                </a>
+                <a href="#" aria-label="YouTube" title="YouTube">
+                    <svg viewBox="0 0 576 512"><path d="M549.65 124.08c-6.28-23.65-24.78-42.15-48.43-48.43C465.45 64 288 64 288 64S110.55 64 74.78 75.65c-23.65 6.28-42.15 24.78-48.43 48.43C16 159.75 16 256 16 256s0 96.25 10.35 131.92c6.28 23.65 24.78 42.15 48.43 48.43C110.55 448 288 448 288 448s177.45 0 213.22-11.65c23.65-6.28 42.15-24.78 48.43-48.43C560 352.25 560 256 560 256s0-96.25-10.35-131.92zM232 336V176l142 80-142 80z"/></svg>
+                </a>
+                </div>
+            </section>
+
+            <section aria-labelledby="contact-info" class="contact-info">
+                <div class="logo-box" aria-label="Logo CrazyPets">
+                    <svg viewBox="0 0 512 512" aria-hidden="true">
+                    <circle cx="256" cy="256" r="208" fill="#fb8c5a"/>
+                    <circle cx="256" cy="256" r="144" fill="#fff"/>
+                    <circle cx="256" cy="256" r="80" fill="#fb8c5a"/>
+                    </svg>
+                    <span class="logo-prompt">Cuc Pet</span>
+                </div>
+                <p><strong>Địa chỉ: </strong>69/68 Đường Đặng Thuỳ Trâm, Phường 13, Quận Bình Thạnh, TP.HCM</p>
+                <p><strong>Điện thoại: </strong>0983 627 080</p>
+                <p><strong>Email: </strong><a href="cucpet@gmail.com">cucpet@gmail.com</a></p>
+                <p><strong>Thứ 2 - Thứ 6: </strong>09:30 - 19:00</p>
+                <p><strong>Thứ 7: </strong>10:00 - 17:00</p>
+                <p><strong>Chủ Nhật: </strong><span class="highlight-text">Nghỉ</span></p>
+            </section>
+
+            <nav aria-labelledby="about-us">
+                <h3 id="about-us">Về Chúng Tôi</h3>
+                <ul>
+                <li><a href="{{ url_for('home') }}">Trang chủ</a></li>
+                <li><a href="{{ url_for('shopping') }}">Mua sắm</a></li>
+                <li><a href="{{ url_for('service') }}">Dịch vụ</a></li>
+                <li><a href="{{ url_for('contact') }}">Liên hệ</a></li>
+                <li><a href="{{ url_for('chatbot') }}">Chatbot</a></li>
+                </ul>
+            </nav>
+
+            <nav aria-labelledby="useful-links">
+                <h3 id="useful-links">Liên Kết Hữu Ích</h3>
+                <ul>
+                    <li>Tuyển dụng</li>
+                    <li>Trung tâm hỗ trợ</li>
+                    <li>Chính sách hoàn trả</li>
+                    <li>Tìm kiếm nâng cao</li>
+                    <li>Chính sách bảo mật</li>
+                    <li>Điều khoản &amp; điều kiện</li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+    <div id="webchat" class="chat-widget"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@rasahq/rasa-webchat@1.0.1/lib/index.min.js"></script>
+    <script src="/static/chatbot.js"></script>
+</body>
+</html>
